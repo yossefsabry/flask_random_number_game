@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ title }}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='all.min.css') }}">
+</head>
+
+<body>
+	<div class="container">
+		<h2>welcome in guess game <i class="fas fa-gamepad"></i></h2>
+		<p>** show a number from 1 to 100 **</p>
+
+		<form action="/" method="post">
+			<input type="number" placeholder="Enter the Number" name="number" />
+			<input type="submit" value="submit">
+		</form>
+		<form action="/reset">
+			<input type="submit" value="restert">
+		</form>
+
+		<div class="guess">
+			{% for guess in guessUser %}
+			<div class="style-guess">
+
+				<h4 class="guess-user {% if 'high' in guess %} 
+				red {% elif 'low' in guess %}
+		    	yellow {% elif 'correct' in guess %} green {% endif %} ">
+					{{ guess }}</h4>
+			</div>
+			{% endfor %}
+		</div>
+
+	</div>
+
+	<script src="{{ url_for('static', filename='all.min.js') }}"></script>
+</body>
+
+</html>
